@@ -14,7 +14,11 @@
 1. Een mooie volgende stap lijkt me om alle model classes te maken die nodig zijn om de staat van het spel bij te houden.
    Hierbij kijk ik naar de punten in "Minimale Vereisten". Uitzoeken welke woorden mogelijk zijn lijkt me lastig (wel te doen),
    dus dat doe ik nog even niet. Ik maak de `Game` class. **Commit**
-1. Nu is het leuk om de view te implementeren van wat ik zojuist gemaakt heb.
+1. Nu is het leuk om de view te implementeren van wat ik zojuist gemaakt heb. Ik ben flink doorgegaan en heb
+   een hoop dingen veranderd in de code, te veel om op te noemen. Ik heb de grid size even op 10 gezet om
+   makkelijker dingen uit te kunnen proberen. Het spel werkt. Enige eis waar nog niet aan voldaan is, is welke
+   woorden er nog gevonden moeten worden. **Commit (2x)**
+
 
 
 # Installation
