@@ -1,6 +1,23 @@
 
-class Dictionary(val wordSet: Set<String>) {
+/**
+ * Load a dictionary, one word per line.
+ * Invalid lines are filtered and lines are converted to uppercase.
+ */
+fun loadDictionary(lines: String, alphabet: Collection<Char>, minimumWordLength: Int) =
+    Dictionary(
+        alphabet,
+        lines
+            .lines()
+            .map { it.trim().uppercase() }
+            .filter { word -> word.length >= minimumWordLength && word.all { char -> char in alphabet }}
+            .toSet()
+    )
 
+
+class Dictionary(val alphabet: Collection<Char>, val wordSet: Set<String>) {
+
+    // For example, if wordSet is {"hi", "hello"} then prefixes
+    // will become {"h", "hi", "he", "hel", "hell", "hello"}.
     private val prefixes = buildSet {
         addAll(wordSet)
         for (word in wordSet) {
@@ -35,11 +52,3 @@ class Dictionary(val wordSet: Set<String>) {
     }
 
 }
-
-fun loadDictionary() =
-    Dictionary(
-        object{}.javaClass.getResource("wordlist.txt")!!.readText().lines()
-            .map { it.trim().uppercase() }
-            .filter { word -> word.length >= 4 && word.all { char -> char in defaultAlphabet }}
-            .toSet()
-    )

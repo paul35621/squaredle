@@ -51,10 +51,7 @@ data class Grid(
     }
 }
 
-const val defaultGridSize = 4
-val defaultAlphabet = ('A'..'Z').toList()
-
-fun randomGrid(size: Int = defaultGridSize, alphabet: Collection<Char> = defaultAlphabet) = Grid(
+fun randomGrid(size: Int, alphabet: Collection<Char>) = Grid(
     size,
     List(size) {
         List(size) { alphabet.random() }

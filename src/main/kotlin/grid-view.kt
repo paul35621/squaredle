@@ -3,6 +3,9 @@ import generalqt.layoutGrid
 import io.qt.widgets.QPushButton
 import io.qt.widgets.QSizePolicy
 
+/**
+ * Create a grid of buttons
+ */
 fun layoutGrid(game: Game) = layoutGrid {
     for (position in game.grid.positions) {
         val button = QPushButton()

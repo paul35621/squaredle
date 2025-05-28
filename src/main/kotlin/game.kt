@@ -1,9 +1,21 @@
 
+/*
+
+This class represents the state of the game.
+
+Actually, the state of the application, because the "New game" button
+will keep the same game object and just reset the variables.
+
+The view can use the onChange and onChangeAndNow methods to
+be notified about changes in the state.
+
+ */
+
 class Game(val gridSize: Int, val dictionary: Dictionary) {
 
     /* State variables */
 
-    var grid: Grid = randomGrid(gridSize)
+    var grid: Grid = randomGrid(gridSize, dictionary.alphabet)
         private set
 
     var allWords: List<String> = dictionary.findWords(grid).sorted()
@@ -89,7 +101,7 @@ class Game(val gridSize: Int, val dictionary: Dictionary) {
     }
 
     fun newGame() {
-        grid = randomGrid(gridSize)
+        grid = randomGrid(gridSize, dictionary.alphabet)
         allWords = dictionary.findWords(grid).sorted()
         restart()
     }
