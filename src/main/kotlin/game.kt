@@ -18,9 +18,6 @@ class Game(val gridSize: Int, val dictionary: Dictionary) {
     var clickedPositions = emptyList<Position>()
         private set
 
-    // Emitted when any of the variables have changed
-    val updated = PSignal<Unit>()
-
 
     /* Derived variables */
 
@@ -32,6 +29,24 @@ class Game(val gridSize: Int, val dictionary: Dictionary) {
 
     val currentWordNotEmpty get() =
         currentWord.isNotEmpty()
+
+
+    /* Mechanism for reporting changes to the view */
+
+    private val listeners = mutableListOf<() -> Unit>()
+
+    fun onChange(f: () -> Unit) {
+        listeners += f
+    }
+
+    fun onChangeAndNow(f: () -> Unit) {
+        listeners += f
+        f()
+    }
+
+    private fun reportChange() {
+        for (f in listeners) f()
+    }
 
 
     /* Functions */
@@ -46,13 +61,13 @@ class Game(val gridSize: Int, val dictionary: Dictionary) {
         if (!canClick(position)) throw IllegalStateException()
         clickedPositions += position
         currentWord += grid.charAt(position)
-        updated.emit(Unit)
+        reportChange()
     }
 
     fun clearWord() {
         clickedPositions = emptyList()
         currentWord = ""
-        updated.emit(Unit)
+        reportChange()
     }
 
     fun addWord() {
@@ -66,7 +81,7 @@ class Game(val gridSize: Int, val dictionary: Dictionary) {
         if (currentWordNotEmpty) {
             clickedPositions = clickedPositions.dropLast(1)
             currentWord = currentWord.dropLast(1)
-            updated.emit(Unit)
+            reportChange()
         }
     }
 

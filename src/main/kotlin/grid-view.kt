@@ -11,7 +11,7 @@ fun layoutGrid(game: Game) = layoutGrid {
             game.click(position)
         }
 
-        game.updated.connectAndNow {
+        game.onChangeAndNow {
             button.enabled = game.canClick(position)
             button.text = game.grid.charAt(position).toString()
         }

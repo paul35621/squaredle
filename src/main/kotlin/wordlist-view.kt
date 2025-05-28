@@ -27,7 +27,7 @@ fun layoutWordList(game: Game) = layoutVBox {
 
     var lastAllWords: List<String>? = null
 
-    game.updated.connectAndNow {
+    game.onChangeAndNow {
         labelFound.text = "Found words: (${game.wordsFound.size} / ${game.allWords.size})"
 
         textFoundWords.plainText = game.wordsFound.joinToString("\n")

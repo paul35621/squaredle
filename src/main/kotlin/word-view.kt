@@ -22,7 +22,7 @@ fun layoutCurrentWord(game: Game): QLayout {
 
     /***** Update widgets *****/
 
-    game.updated.connectAndNow {
+    game.onChangeAndNow {
         line.text = game.currentWord
         buttonAdd.enabled = game.canAddWord
         buttonBackspace.enabled = game.currentWordNotEmpty
