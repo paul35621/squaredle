@@ -1,3 +1,6 @@
+import generalqt.connectAndExecute
+import generalqt.improvedSetVisible
+import io.qt.widgets.QCheckBox
 import io.qt.widgets.QLabel
 import io.qt.widgets.QPlainTextEdit
 
@@ -12,6 +15,11 @@ fun layoutWordList(game: Game) = layoutVBox {
 
     val textAllWords = QPlainTextEdit()
     textAllWords.readOnly = true
+
+    val checkboxAllWords = QCheckBox("Show all words")
+    checkboxAllWords.clicked.connectAndExecute {
+        textAllWords.improvedSetVisible(checkboxAllWords.checked)
+    }
 
 
     /***** Update widgets *****/
@@ -29,10 +37,11 @@ fun layoutWordList(game: Game) = layoutVBox {
         }
     }
 
+
     /***** Layout *****/
 
     addWidget(labelFound)
     addWidget(textFoundWords)
-    addLabel("All words:")
+    addWidget(checkboxAllWords)
     addWidget(textAllWords)
 }
