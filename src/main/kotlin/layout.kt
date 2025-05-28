@@ -80,6 +80,9 @@ inline fun layoutHBox(function: QHBoxLayout.() -> Unit) =
 inline fun layoutVBox(function: QVBoxLayout.() -> Unit) =
     QVBoxLayout().apply(function)
 
+inline fun layoutGrid(function: QGridLayout.() -> Unit) =
+    QGridLayout().apply(function)
+
 inline fun QWidget.setLayoutHBox(function: QHBoxLayout.() -> Unit) =
     QHBoxLayout(this).apply(function)
 

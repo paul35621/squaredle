@@ -28,8 +28,13 @@ data class Grid(
         }
     }
 
-    fun contains(pos: Position) =
+    operator fun contains(pos: Position) =
         pos.x < size && pos.y < size
+
+    fun charAt(pos: Position): Char {
+        if (pos !in this) throw IllegalArgumentException()
+        return chars[pos.x][pos.y]
+    }
 }
 
 const val defaultGridSize = 4

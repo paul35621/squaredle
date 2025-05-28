@@ -1,5 +1,10 @@
 
-class Game(val grid: Grid, val dictionary: Set<String>) {
+class Game(val gridSize: Int, val dictionary: Set<String>) {
+
+    /* State variables */
+
+    var grid: Grid = randomGrid(gridSize)
+        private set
 
     var wordsFound = emptySet<String>()
         private set
@@ -10,17 +15,36 @@ class Game(val grid: Grid, val dictionary: Set<String>) {
     var clickedPositions = emptyList<Position>()
         private set
 
+    // Emitted when any of the variables have changed
+    val updated = PSignal<Unit>()
+
+
+    /* Derived variables */
+
     val lastPosition get() =
         clickedPositions.lastOrNull()
 
     val canAddWord get() =
         currentWord in dictionary && currentWord !in wordsFound
 
+    val currentWordNotEmpty get() =
+        currentWord.isNotEmpty()
+
+
+    /* Functions */
+
     fun canClick(position: Position) =
-        grid.contains(position) && (
+        position in grid && (
             lastPosition == null ||
             (position.isNeighbor(lastPosition!!) && position !in clickedPositions)
         )
+
+    fun click(position: Position) {
+        if (!canClick(position)) throw IllegalStateException()
+        clickedPositions += position
+        currentWord += grid.charAt(position)
+        updated.emit(Unit)
+    }
 
     fun clearWord() {
         clickedPositions = emptyList()
@@ -34,6 +58,17 @@ class Game(val grid: Grid, val dictionary: Set<String>) {
         clearWord()
     }
 
-    // Emitted when any of the variables have changed
-    val updated = PSignal<Unit>()
+    fun backSpace() {
+        if (currentWordNotEmpty) {
+            clickedPositions = clickedPositions.dropLast(1)
+            currentWord = currentWord.dropLast(1)
+            updated.emit(Unit)
+        }
+    }
+
+    fun newGame() {
+        grid = randomGrid(gridSize)
+        wordsFound = emptySet()
+        clearWord()
+    }
 }

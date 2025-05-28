@@ -12,8 +12,9 @@
    Ik kopieer wat bestanden van een ander project met handige functies voor QtJambi. Veel functies daaruit zal ik niet gebruiken,
    maar die gooi ik dan later weg. **Commit**
 1. Een mooie volgende stap lijkt me om alle model classes te maken die nodig zijn om de staat van het spel bij te houden.
-   Hierbij kijk ik naar de punten in "Minimale Vereisten". Uitzoeken welke woorden mogelijk zijn lijkt me lastig,
+   Hierbij kijk ik naar de punten in "Minimale Vereisten". Uitzoeken welke woorden mogelijk zijn lijkt me lastig (wel te doen),
    dus dat doe ik nog even niet. Ik maak de `Game` class. **Commit**
+1. Nu is het leuk om de view te implementeren van wat ik zojuist gemaakt heb.
 
 
 # Installation
