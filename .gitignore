@@ -1,0 +1,5 @@
+# Compiler / IDE files
+.gradle
+.idea
+.kotlin
+build
