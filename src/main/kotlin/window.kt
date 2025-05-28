@@ -12,12 +12,20 @@ class Window : QMainWindow() {
     val game = Game(4, dictionary)
 
     init {
+        val buttonRestart = QPushButton("Restart")
+        buttonRestart.clicked.connect(game::restart)
+
+        game.onChangeAndNow {
+            buttonRestart.enabled = game.canRestart
+        }
+
         val buttonNewGame = QPushButton("New game")
         buttonNewGame.clicked.connect(game::newGame)
 
         val widgetMain = widgetVBox {
             addHBox {
                 addStretch()
+                addWidget(buttonRestart)
                 addWidget(buttonNewGame)
             }
             addSpacing(spacing)

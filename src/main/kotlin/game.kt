@@ -24,6 +24,9 @@ class Game(val gridSize: Int, val dictionary: Dictionary) {
     val lastPosition get() =
         clickedPositions.lastOrNull()
 
+    val canRestart get() =
+        currentWordNotEmpty || wordsFound.isNotEmpty()
+
     val canAddWord get() =
         currentWord in dictionary && currentWord !in wordsFound
 
@@ -88,6 +91,10 @@ class Game(val gridSize: Int, val dictionary: Dictionary) {
     fun newGame() {
         grid = randomGrid(gridSize)
         allWords = dictionary.findWords(grid).sorted()
+        restart()
+    }
+
+    fun restart() {
         wordsFound = emptySet()
         clearWord()
     }

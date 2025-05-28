@@ -27,6 +27,9 @@
       Als het woord in de woordenlijst zit, voeg het toe aan de set van mogelijke woorden.
 1. Nu de boel een beetje opschonen, eerst overbodige code weggooien. Dan een beetje rondkijken wat er beter kan.
    Meer comments toevoegen.
+1. Ik bekijk het instructiedocument nog een keer. Sommige functionaliteit is makkelijk toe te voegen. De
+   "Als speler wil ik mijn voortgang kunnen resetten, zodat ik opnieuw kan beginnen" functie is makkelijk,
+   dus die doe ik er in.
 
 
 
