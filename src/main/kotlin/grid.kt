@@ -16,7 +16,7 @@ data class Grid(
     val chars: List<List<Char>>  // chars[x][y]
 ) {
     val indices1d = 0 until size
-    val indices2d = indices1d.flatMap { x -> indices1d.map { y -> Position(x, y) } }
+    val positions = indices1d.flatMap { x -> indices1d.map { y -> Position(x, y) } }
 
     init {
         // Check input

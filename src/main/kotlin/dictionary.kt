@@ -27,7 +27,7 @@ class Dictionary(val wordSet: Set<String>) {
             }
         }
 
-        for (pos in grid.indices2d) {
+        for (pos in grid.positions) {
             val clicked = listOf(pos)
             val word = grid.charAt(pos).toString()
             addWords(clicked, word, pos)

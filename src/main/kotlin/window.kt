@@ -1,3 +1,6 @@
+import generalqt.addHBox
+import generalqt.addVBox
+import generalqt.widgetVBox
 import io.qt.core.Qt
 import io.qt.gui.QKeyEvent
 import io.qt.widgets.QMainWindow

@@ -1,5 +1,6 @@
 import generalqt.connectAndExecute
 import generalqt.improvedSetVisible
+import generalqt.layoutVBox
 import io.qt.widgets.QCheckBox
 import io.qt.widgets.QLabel
 import io.qt.widgets.QPlainTextEdit

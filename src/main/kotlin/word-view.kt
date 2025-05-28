@@ -1,3 +1,4 @@
+import generalqt.layoutHBox
 import io.qt.widgets.QLayout
 import io.qt.widgets.QLineEdit
 import io.qt.widgets.QPushButton
