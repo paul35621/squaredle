@@ -1,13 +1,12 @@
 import io.qt.core.Qt
 import io.qt.gui.QKeyEvent
 import io.qt.widgets.QMainWindow
-import io.qt.widgets.QPlainTextEdit
 import io.qt.widgets.QPushButton
 
 const val spacing = 10
 
 class Window : QMainWindow() {
-    val game = Game(10, wordlist)
+    val game = Game(4, dictionary)
 
     init {
         val buttonNewGame = QPushButton("New game")
@@ -26,17 +25,7 @@ class Window : QMainWindow() {
                     addLayout(layoutCurrentWord(game))
                 }
                 addSpacing(spacing)
-                addVBox {
-                    addLabel("Found words:")
-                    val textFoundWords = QPlainTextEdit()
-                    textFoundWords.readOnly = true
-
-                    game.updated.connect { _ ->
-                        textFoundWords.plainText = game.wordsFound.joinToString("\n")
-                    }
-
-                    addWidget(textFoundWords)
-                }
+                addLayout(layoutWordList(game))
             }
         }
 
@@ -48,14 +37,10 @@ class Window : QMainWindow() {
     }
 
     override fun keyPressEvent(event: QKeyEvent) {
-        if (event.key() == Qt.Key.Key_Escape.value()) {
-            game.clearWord()
-        }
-        else if (event.key() == Qt.Key.Key_Backspace.value()) {
-            game.backSpace()
-        }
-        else {
-            super.keyPressEvent(event)
+        when (event.key()) {
+            Qt.Key.Key_Escape.value() -> game.clearWord()
+            Qt.Key.Key_Backspace.value() -> game.backSpace()
+            else -> super.keyPressEvent(event)
         }
     }
 }

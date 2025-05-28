@@ -18,6 +18,14 @@
    een hoop dingen veranderd in de code, te veel om op te noemen. Ik heb de grid size even op 10 gezet om
    makkelijker dingen uit te kunnen proberen. Het spel werkt. Enige eis waar nog niet aan voldaan is, is welke
    woorden er nog gevonden moeten worden. **Commit (2x)**
+1. Nu een algoritme bedenken die zoekt welke woorden er gevonden kunnen worden. De runtime hiervan kan al
+   snel uit de hand lopen. Hier is het idee:
+   1. Maak een set met word prefixes. Voorbeeld, als je woordenlijst `{"hi", "hello"}` is, dan is je word prefix
+      set `{"h", "hi", "he", "hel", "hell", "hello"}`. Dit kan gedaan worden bij application startup.
+   2. Ga alle combinaties van letters die je aan kan klikken af met een recursieve functie, een depth-first search.
+      Bij iedere stap, kijk of het huidige woord in de prefix set zit om te checken of je verder kan.
+      Als het woord in de woordenlijst zit, voeg het toe aan de set van mogelijke woorden. **Commit**
+
 
 
 

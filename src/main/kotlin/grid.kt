@@ -35,6 +35,20 @@ data class Grid(
         if (pos !in this) throw IllegalArgumentException()
         return chars[pos.x][pos.y]
     }
+
+    fun neighbors(pos: Position) = buildList(8) {
+        for (dx in -1..1) {
+            val x = pos.x + dx
+            if (x in indices1d) {
+                for (dy in -1..1) {
+                    if (dx != 0 || dy != 0) {
+                        val y = pos.y + dy
+                        if (y in indices1d) add(Position(x, y))
+                    }
+                }
+            }
+        }
+    }
 }
 
 const val defaultGridSize = 4

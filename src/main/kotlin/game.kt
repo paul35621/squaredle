@@ -1,9 +1,12 @@
 
-class Game(val gridSize: Int, val dictionary: Set<String>) {
+class Game(val gridSize: Int, val dictionary: Dictionary) {
 
     /* State variables */
 
     var grid: Grid = randomGrid(gridSize)
+        private set
+
+    var allWords: List<String> = dictionary.findWords(grid).sorted()
         private set
 
     var wordsFound = emptySet<String>()
@@ -53,9 +56,10 @@ class Game(val gridSize: Int, val dictionary: Set<String>) {
     }
 
     fun addWord() {
-        if (!canAddWord) throw IllegalStateException()
-        wordsFound += currentWord
-        clearWord()
+        if (canAddWord) {
+            wordsFound += currentWord
+            clearWord()
+        }
     }
 
     fun backSpace() {
@@ -68,6 +72,7 @@ class Game(val gridSize: Int, val dictionary: Set<String>) {
 
     fun newGame() {
         grid = randomGrid(gridSize)
+        allWords = dictionary.findWords(grid).sorted()
         wordsFound = emptySet()
         clearWord()
     }

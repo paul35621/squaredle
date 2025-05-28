@@ -3,6 +3,7 @@ import io.qt.widgets.QLineEdit
 import io.qt.widgets.QPushButton
 
 fun layoutCurrentWord(game: Game): QLayout {
+
     /***** Widgets *****/
 
     val line = QLineEdit()
